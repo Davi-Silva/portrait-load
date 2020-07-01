@@ -5,15 +5,20 @@ import 'portrait-load/dist/index.css'
 
 const App = () => {
   const [imagesArray, setImagesArray] = useState([])
+  const childRef = useRef()
 
   const handleSetImagesArray = (images) => {
     setImagesArray(images)
   }
 
-  const childRef = useRef()
+  const submitForm = (e) => {
+    e.preventDefault()
+    childRef.current.handleStartUploadingFiles()
+  }
+
 
   return (
-    <Fragment>
+    <form onSubmit={submitForm}>
       <ImageUploader
         ref={childRef}
         width='450px'
@@ -26,14 +31,10 @@ const App = () => {
         multipleFiles={true}
         apiEndpoint='http://localhost:5000/admin/products/publish/media'
       />
-      <button
-        onClick={() => {
-          childRef.current.handleStartUploadingFiles()
-        }}
-      >
+      <button type='submit'>
         Send
       </button>
-    </Fragment>
+    </form>
   )
 }
 
