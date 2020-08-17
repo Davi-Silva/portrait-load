@@ -11,21 +11,56 @@ const FilesList = (props) => {
     <ImagesList width={width} height={height}>
       {imagesArray.length > 0 && (
         <>
-          {imagesArray.map((image, index) => (
-            <Fragment key={image.id}>
-              {image.data === undefined ? (
-                <>
-                  <img src={image.preview} alt={image.name} />
-                  {!(imagesArray.length === index + 1) && <Sep />}
-                </>
-              ) : (
-                <>
-                  <img src={image.data.url} alt={image.data.name} />
-                  {!(imagesArray.length === index + 1) && <Sep />}
-                </>
-              )}
-            </Fragment>
-          ))}
+          {imagesArray.map((image, index) => {
+            const ext = image.name.split('.').pop()
+            return (
+              <Fragment key={image.id}>
+                {image.data === undefined ? (
+                  <>
+                    {(ext === 'jpg' || ext === 'jpeg' || ext === 'png') && (
+                      <>
+                        <img src={image.preview} alt={image.name} />
+                        {!(imagesArray.length === index + 1) && <Sep />}
+                      </>
+                    )}
+                    {(ext === 'mp4' ||
+                      ext === 'mov' ||
+                      ext === 'wmv' ||
+                      ext === 'avi') && (
+                      <>
+                        <video width={width} controls>
+                          <source src={image.preview} type={`video/${ext}`} />
+                          Your browser does not support HTML video.
+                        </video>
+                        {!(imagesArray.length === index + 1) && <Sep />}
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {(ext === 'jpg' || ext === 'jpeg' || ext === 'png') && (
+                      <>
+                        <img src={image.data.url} alt={image.name} />
+                        {!(imagesArray.length === index + 1) && <Sep />}
+                      </>
+                    )}
+                    {(ext === 'mp4' ||
+                      ext === 'mov' ||
+                      ext === 'wmv' ||
+                      ext === 'avi') && (
+                      <>
+                        <video width={width} controls>
+                          <source src={image.data.url} type={`video/${ext}`} />
+                          Your browser does not support HTML video.
+                        </video>
+                        {!(imagesArray.length === index + 1) && <Sep />}
+                      </>
+                    )}
+                  </>
+                )}
+              </Fragment>
+            )
+          })}
         </>
       )}
     </ImagesList>

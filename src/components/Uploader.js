@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone'
 import { uniqueId } from 'lodash'
 import filesize from 'filesize'
 
-import { Wrapper } from '../styles/components/Uploader'
+import { Wrapper, Message } from '../styles/components/Uploader'
 
 const Uploader = (props) => {
   const {
@@ -13,9 +13,13 @@ const Uploader = (props) => {
     isDragAcceptColor,
     isDragNotAcceptColor,
     isDragRejectColor,
+    textColor,
+    textSize,
     handleSetImagesArray,
     multipleFiles
   } = props
+
+  console.log('textColor:', textColor)
 
   const createImageObj = (file) => {
     return {
@@ -67,14 +71,22 @@ const Uploader = (props) => {
         {...getRootProps()}
       >
         <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop the images / videos here ...</p>
-        ) : (
-          <p>
-            Drag 'n' drop some images / videos here, or click to select images /
-            videos
-          </p>
-        )}
+        <Message textColor={textColor} textSize={textSize}>
+          {isDragActive ? (
+            <>
+              <p>Drop the images / videos here ...</p>
+              <p>{`${width} by ${height}`}</p>
+            </>
+          ) : (
+            <>
+              <p>
+                Drag 'n' drop some images / videos here, or click to select
+                images / videos
+              </p>
+              <p>{`${width} by ${height}`}</p>
+            </>
+          )}
+        </Message>
         {props.children}
       </Wrapper>
     </Fragment>

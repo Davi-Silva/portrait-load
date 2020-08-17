@@ -18,6 +18,8 @@ export const ImageUploader = forwardRef((props, ref) => {
     isDragNotAcceptColor,
     isDragAcceptColor,
     isDragRejectColor,
+    textColor,
+    textSize,
     multipleFiles,
     apiEndpoint
   } = props
@@ -85,6 +87,8 @@ export const ImageUploader = forwardRef((props, ref) => {
         isDragNotAcceptColor={isDragNotAcceptColor}
         isDragAcceptColor={isDragAcceptColor}
         isDragRejectColor={isDragRejectColor}
+        textColor={textColor}
+        textSize={textSize}
         multipleFiles={multipleFiles}
       >
         {imagesArray.length > 0 && (

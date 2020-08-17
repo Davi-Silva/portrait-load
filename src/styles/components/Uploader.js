@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   border: 2px dashed
@@ -22,4 +22,18 @@ export const Wrapper = styled.div`
   p {
     text-align: center;
   }
-`;
+`
+
+export const Message = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  p {
+    text-align: center;
+    color: ${(props) => props.textColor};
+    font-size: ${(props) => props.textSize};
+  }
+`
