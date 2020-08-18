@@ -18,6 +18,9 @@ export const ImageUploader = forwardRef((props, ref) => {
     isDragNotAcceptColor,
     isDragAcceptColor,
     isDragRejectColor,
+    onDragMessage,
+    defaultMessage,
+    fileDimensions,
     textColor,
     textSize,
     multipleFiles,
@@ -90,6 +93,9 @@ export const ImageUploader = forwardRef((props, ref) => {
         textColor={textColor}
         textSize={textSize}
         multipleFiles={multipleFiles}
+        onDragMessage={onDragMessage}
+        defaultMessage={defaultMessage}
+        fileDimensions={fileDimensions}
       >
         {imagesArray.length > 0 && (
           <FilesList

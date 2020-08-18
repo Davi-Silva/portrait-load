@@ -30,6 +30,12 @@ const App = () => {
         textColor='red'
         textSize='20px'
         multipleFiles={true}
+        onDragMessage='Drop files here'
+        defaultMessage='Drag and Drop files here'
+        fileDimensions={{
+          width: '650px',
+          height: '650px'
+        }}
         apiEndpoint='http://localhost:5000/admin/products/publish/media'
       />
       <button type='submit'>

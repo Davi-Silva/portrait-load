@@ -16,7 +16,10 @@ const Uploader = (props) => {
     textColor,
     textSize,
     handleSetImagesArray,
-    multipleFiles
+    multipleFiles,
+    onDragMessage,
+    defaultMessage,
+    fileDimensions
   } = props
 
   console.log('textColor:', textColor)
@@ -74,16 +77,27 @@ const Uploader = (props) => {
         <Message textColor={textColor} textSize={textSize}>
           {isDragActive ? (
             <>
-              <p>Drop the images / videos here ...</p>
-              <p>{`${width} by ${height}`}</p>
+              {onDragMessage !== undefined && <p>{onDragMessage}</p>}
+              {fileDimensions !== undefined && (
+                <>
+                  {(fileDimensions.width !== undefined ||
+                    fileDimensions.height === undefined) && (
+                    <p>{`${fileDimensions.width} by ${fileDimensions.height}`}</p>
+                  )}
+                </>
+              )}
             </>
           ) : (
             <>
-              <p>
-                Drag 'n' drop some images / videos here, or click to select
-                images / videos
-              </p>
-              <p>{`${width} by ${height}`}</p>
+              {defaultMessage !== undefined && <p>{defaultMessage}</p>}
+              {fileDimensions !== undefined && (
+                <>
+                  {(fileDimensions.width !== undefined ||
+                    fileDimensions.height === undefined) && (
+                    <p>{`${fileDimensions.width} by ${fileDimensions.height}`}</p>
+                  )}
+                </>
+              )}
             </>
           )}
         </Message>
