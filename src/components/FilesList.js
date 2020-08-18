@@ -12,7 +12,18 @@ const FilesList = (props) => {
       {imagesArray.length > 0 && (
         <>
           {imagesArray.map((image, index) => {
-            const ext = image.name.split('.').pop()
+            let ext
+            if (image.name !== undefined) {
+              ext = image.name.split('.').pop()
+            }
+            if (image.data !== undefined) {
+              // ext = image.name.split('.').pop()
+              console.log('image uploaded:', image.data)
+              ext = image.data.name.split('.').pop()
+              console.log('ext uplaoded:', ext)
+            }
+
+            console.log('image:', image)
             return (
               <Fragment key={image.id}>
                 {image.data === undefined ? (
