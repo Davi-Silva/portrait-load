@@ -1,10 +1,13 @@
 {
   "name": "portrait-load",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "A simple and straightforward react image uploader component.",
   "author": "Davi-Silva",
   "license": "MIT",
   "repository": "Davi-Silva/portrait-load",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
