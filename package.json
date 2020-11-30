@@ -5,6 +5,7 @@
   "author": "Davi-Silva",
   "license": "MIT",
   "repository": "Davi-Silva/portrait-load",
+  "private": false,
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
