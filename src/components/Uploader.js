@@ -25,6 +25,7 @@ const Uploader = (props) => {
   console.log('textColor:', textColor)
 
   const createImageObj = (file) => {
+    console.log(file)
     return {
       file,
       id: uniqueId(),

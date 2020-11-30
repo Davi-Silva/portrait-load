@@ -37,10 +37,9 @@ const App = () => {
           height: '650px'
         }}
         apiEndpoint='http://localhost:5000/admin/products/publish/media'
+        // destinationFolder='Hello World'
       />
-      <button type='submit'>
-        Send
-      </button>
+      <button type='submit'>Send</button>
     </form>
   )
 }

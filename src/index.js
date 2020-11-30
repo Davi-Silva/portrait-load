@@ -24,7 +24,8 @@ export const ImageUploader = forwardRef((props, ref) => {
     textColor,
     textSize,
     multipleFiles,
-    apiEndpoint
+    apiEndpoint,
+    destinationFolder
   } = props
   const [processedFilesArray, setProcessedFilesArray] = useState([])
 
@@ -61,18 +62,37 @@ export const ImageUploader = forwardRef((props, ref) => {
   }
 
   const handleUploadFile = async (formData, processedFilesArray) => {
-    axios
-      .post(`${apiEndpoint}`, formData)
-      .then(async (response) => {
-        console.log('response:', response)
-        setProcessedFilesArray((oldProcessedFilesArray) => [
-          ...oldProcessedFilesArray,
-          response
-        ])
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    if (destinationFolder !== null || destinationFolder !== undefined) {
+      axios
+        .post(`${apiEndpoint}`, formData, {
+          headers: {
+            Authorization: `${destinationFolder}`
+          }
+        })
+        .then(async (response) => {
+          console.log('response:', response)
+          setProcessedFilesArray((oldProcessedFilesArray) => [
+            ...oldProcessedFilesArray,
+            response
+          ])
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    } else {
+      axios
+        .post(`${apiEndpoint}`, formData)
+        .then(async (response) => {
+          console.log('response:', response)
+          setProcessedFilesArray((oldProcessedFilesArray) => [
+            ...oldProcessedFilesArray,
+            response
+          ])
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
 
   useImperativeHandle(ref, () => ({
